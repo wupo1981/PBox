@@ -10,7 +10,6 @@
 			"Tooltip": "AES67 Transmitter Gain Control - Adjust audio level",
 			"PropertyInspectorPath": "ui/increment-counter.html",
 			"Controllers": [
-				"Keypad",
 				"Encoder"
 			],
 			"Encoder": {
