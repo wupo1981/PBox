@@ -4,10 +4,10 @@
 	"Author": "AuraWave",
 	"Actions": [
 		{
-			"Name": "Counter",
-			"UUID": "com.aurawave.pbox.increment",
+			"Name": "TxGain",
+			"UUID": "com.aurawave.pbox.txgain",
 			"Icon": "imgs/actions/counter/icon",
-			"Tooltip": "Displays a count, which increments by one on press or dial rotation.",
+			"Tooltip": "AES67 Transmitter Gain Control - Adjust audio level",
 			"PropertyInspectorPath": "ui/increment-counter.html",
 			"Controllers": [
 				"Keypad",
@@ -27,7 +27,7 @@
 	"Category": "pbox",
 	"CategoryIcon": "imgs/plugin/category-icon",
 	"CodePath": "bin/plugin.js",
-	"Description": "pbox api",
+	"Description": "AES67 Transmitter Gain Control",
 	"Icon": "imgs/plugin/marketplace",
 	"SDKVersion": 3,
 	"Software": {

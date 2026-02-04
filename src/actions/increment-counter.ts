@@ -3,7 +3,7 @@ import { action, KeyDownEvent, SingletonAction, WillAppearEvent, DialRotateEvent
 /**
  * An example action class that displays a count that increments by one each time the button is pressed.
  */
-@action({ UUID: "com.aurawave.pbox.increment" })
+@action({ UUID: "com.aurawave.pbox.txgain" })
 export class IncrementCounter extends SingletonAction<CounterSettings> {
 	private currentTitle: string = "";
 	private longPressTimers: Map<string, NodeJS.Timeout> = new Map(); // Track long press timers by context
