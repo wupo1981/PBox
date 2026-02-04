@@ -1,0 +1,51 @@
+{
+	"Name": "pbox",
+	"Version": "0.1.0.0",
+	"Author": "AuraWave",
+	"Actions": [
+		{
+			"Name": "Counter",
+			"UUID": "com.aurawave.pbox.increment",
+			"Icon": "imgs/actions/counter/icon",
+			"Tooltip": "Displays a count, which increments by one on press or dial rotation.",
+			"PropertyInspectorPath": "ui/increment-counter.html",
+			"Controllers": [
+				"Keypad",
+				"Encoder"
+			],
+			"Encoder": {
+				"layout": "$A1"
+			},
+			"States": [
+				{
+					"Image": "imgs/actions/counter/key",
+					"TitleAlignment": "middle"
+				}
+			]
+		}
+	],
+	"Category": "pbox",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"CodePath": "bin/plugin.js",
+	"Description": "pbox api",
+	"Icon": "imgs/plugin/marketplace",
+	"SDKVersion": 3,
+	"Software": {
+		"MinimumVersion": "6.9"
+	},
+	"OS": [
+		{
+			"Platform": "mac",
+			"MinimumVersion": "12"
+		},
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Nodejs": {
+		"Version": "20",
+		"Debug": "enabled"
+	},
+	"UUID": "com.aurawave.pbox"
+}
