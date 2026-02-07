@@ -18,6 +18,9 @@ export class IncrementCounter extends SingletonAction<CounterSettings> {
 		// Initialize display with SVG
 		this.updateDisplay(this.currentTitle, count, ev);
 		
+		// Set the title text below the icon
+		ev.action.setTitle("Adjust Gain (±40dB)\nPress and hold for 3S\nto reset to 0");
+		
 		// Ensure settings are initialized
 		if (ev.payload.settings.count === undefined) {
 			ev.payload.settings.count = 0;

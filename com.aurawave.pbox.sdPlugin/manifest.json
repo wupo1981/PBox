@@ -6,7 +6,7 @@
 		{
 			"Name": "TxGain",
 			"UUID": "com.aurawave.pbox.txgain",
-			"Icon": "imgs/actions/counter/icon",
+			"Icon": "imgs/actions/txgain/icon",
 			"Tooltip": "AES67 Transmitter Gain Control - Adjust audio level",
 			"PropertyInspectorPath": "ui/txgain.html",
 			"Controllers": [
@@ -17,7 +17,7 @@
 			},
 			"States": [
 				{
-					"Image": "imgs/actions/counter/key",
+					"Image": "imgs/actions/txgain/key",
 					"TitleAlignment": "middle"
 				}
 			]
