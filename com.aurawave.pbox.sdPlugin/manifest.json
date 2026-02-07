@@ -8,7 +8,7 @@
 			"UUID": "com.aurawave.pbox.txgain",
 			"Icon": "imgs/actions/counter/icon",
 			"Tooltip": "AES67 Transmitter Gain Control - Adjust audio level",
-			"PropertyInspectorPath": "ui/increment-counter.html",
+			"PropertyInspectorPath": "ui/txgain.html",
 			"Controllers": [
 				"Encoder"
 			],
