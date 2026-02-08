@@ -7,7 +7,7 @@
 			"Name": "TxGain",
 			"UUID": "com.aurawave.pbox.txgain",
 			"Icon": "imgs/actions/txgain/icon",
-			"Tooltip": "AES67 Transmitter Gain Control - Adjust audio level",
+			"Tooltip": "TX output Gain Control - Adjust audio level",
 			"PropertyInspectorPath": "ui/txgain.html",
 			"Controllers": [
 				"Encoder"
@@ -21,12 +21,31 @@
 					"TitleAlignment": "middle"
 				}
 			]
+		},
+		{
+			"Name": "CrosspointGain",
+			"UUID": "com.aurawave.pbox.crosspointgain",
+			"Icon": "imgs/actions/crosspointgain/icon",
+			"Tooltip": "Crosspoint Gain Control - Adjust audio level",
+			"PropertyInspectorPath": "ui/crosspointgain.html",
+			"Controllers": [
+				"Encoder"
+			],
+			"Encoder": {
+				"layout": "$A1"
+			},
+			"States": [
+				{
+					"Image": "imgs/actions/crosspointgain/key",
+					"TitleAlignment": "middle"
+				}
+			]
 		}
 	],
 	"Category": "pbox",
 	"CategoryIcon": "imgs/plugin/category-icon",
 	"CodePath": "bin/plugin.js",
-	"Description": "AES67 Transmitter Gain Control",
+	"Description": "PBox API Control",
 	"Icon": "imgs/plugin/marketplace",
 	"SDKVersion": 3,
 	"Software": {
