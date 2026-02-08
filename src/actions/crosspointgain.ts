@@ -25,6 +25,9 @@ export class CrosspointGain extends SingletonAction<CounterSettings> {
 		if (!ev.payload.settings.txPair) {
 			ev.payload.settings.txPair = "0,1"; // Default to Ubalance-1/2
 		}
+		if (!ev.payload.settings.rxPair) {
+			ev.payload.settings.rxPair = "0,1"; // Default to Ubalance-1/2
+		}
 		ev.action.setSettings(ev.payload.settings);
 	}
 
@@ -51,8 +54,11 @@ export class CrosspointGain extends SingletonAction<CounterSettings> {
 		// Initialize txPair with default value if not set
 		if (!ev.payload.settings.txPair) {
 			ev.payload.settings.txPair = "0,1"; // Default to Ubalance-1/2
-			ev.action.setSettings(ev.payload.settings);
 		}
+		if (!ev.payload.settings.rxPair) {
+			ev.payload.settings.rxPair = "0,1"; // Default to Ubalance-1/2
+		}
+		ev.action.setSettings(ev.payload.settings);
 	}
 
 	/**
@@ -205,11 +211,15 @@ export class CrosspointGain extends SingletonAction<CounterSettings> {
 			const txPairStr = settings.txPair || "0,1";
 			const [tx1, tx2] = txPairStr.split(',').map(v => parseInt(v.trim(), 10));
 			
-			console.log(`Sending volume update - DB: ${newCount}, TX Pair: ${tx1},${tx2} (from txPair: ${txPairStr})`);
+			// Parse the selected RX pair
+			const rxPairStr = settings.rxPair || "0,1";
+			const [rx1, rx2] = rxPairStr.split(',').map(v => parseInt(v.trim(), 10));
+			
+			console.log(`Sending volume update - DB: ${newCount}, TX Pair: ${tx1},${tx2} (from txPair: ${txPairStr}), RX Pair: ${rx1},${rx2} (from rxPair: ${rxPairStr})`);
 			
 			//aoip for dante
 			//aes67 for AES67
-			const response = await fetch(`http://${ipAddress}/api/aoip/volume-tx`, {
+			const response = await fetch(`http://${ipAddress}/api/aoip/volume-mix`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json;charset=utf-8",
@@ -219,13 +229,15 @@ export class CrosspointGain extends SingletonAction<CounterSettings> {
 					volumes: [
 						{
 							"tx-no": tx1,
+							"rx-no": rx1,
 							db: newCount,
-							"tx-mute": false,
+							"rx-mute": false,
 						},
 						{
 							"tx-no": tx2,
+							"rx-no": rx2,
 							db: newCount,
-							"tx-mute": false,
+							"rx-mute": false,
 						},
 					],
 				}),
@@ -254,11 +266,16 @@ export class CrosspointGain extends SingletonAction<CounterSettings> {
 			// Update key image display
 			this.updateDisplay(this.currentTitle, newCount, ev);
 			
-			// Update dial layout feedback
+			// Update dial layout feedback with indicator position based on db value
 			if (ev.action.isDial()) {
+				// Convert db value range (-40 to 40) to percentage (0 to 100)
+				const indicatorValue = ((newCount + 40) / 80) * 100;
 				await ev.action.setFeedback({
-					title: `${newCount}dB`,
-					value: newCount,
+					title: this.currentTitle || "Crosspoint Gain",
+					value: `${newCount}dB`,
+					indicator: {
+						value: Math.round(indicatorValue),
+					},
 				});
 			}
 		} catch (error) {
@@ -278,4 +295,5 @@ type CounterSettings = {
 	ipAddress?: string;
 	token?: string;
 	txPair?: string; // format: "0,1" representing the two tx-no values
-};
+	rxPair?: string; // format: "0,1" representing the two rx-no values
+	}

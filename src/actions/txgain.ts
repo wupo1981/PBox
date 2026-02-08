@@ -254,11 +254,16 @@ export class IncrementCounter extends SingletonAction<CounterSettings> {
 			// Update key image display
 			this.updateDisplay(this.currentTitle, newCount, ev);
 			
-			// Update dial layout feedback
+			// Update dial layout feedback with indicator position based on db value
 			if (ev.action.isDial()) {
+				// Convert db value range (-40 to 40) to percentage (0 to 100)
+				const indicatorValue = ((newCount + 40) / 80) * 100;
 				await ev.action.setFeedback({
-					title: `${newCount}dB`,
-					value: newCount,
+					title: this.currentTitle || "TX Gain",
+					value: `${newCount}dB`,
+					indicator: {
+						value: Math.round(indicatorValue),
+					},
 				});
 			}
 		} catch (error) {
